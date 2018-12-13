@@ -1,0 +1,47 @@
+<form *ngIf="session" #post_data="ngForm" (ngSubmit)="addPost(post_data)" novalidate>
+  <div class="form-group">
+    <label>post_title</label>
+    <input type="text" name="post_title" ngModel>
+  </div>
+  <div class="form-group">
+    <label>post_imageurl</label>
+    <input type="text" name="post_imageurl" ngModel>
+  </div>
+  <div class="form-group">
+    <label>post_description</label>
+    <input type="text" name="post_description" ngModel>
+  </div>
+  <div class="form-group">
+    <label>post_content</label>
+    <textarea type="text" name="post_content" ngModel></textarea>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-primary">addPost()</button>
+  </div>
+</form>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <td *ngIf="session">post_delete</td>
+      <td>post_id</td>
+      <td>post_title</td>
+      <td>post_imageurl</td>
+      <td>post_description</td>
+      <td>post_content</td>
+      <td>post_datetime</td>
+      <td>post_posted_by</td>
+    </tr>
+  </thead>
+  <tr *ngFor="let post of posts">
+    <td *ngIf="session"><button class="btn btn-danger" (click)="deletePost(post.post_id)">deletePost()</button></td>
+    <td>{{post.post_id}}</td>
+    <td>{{post.post_title}}</td>
+    <td>{{post.post_imageurl}}</td>
+    <td>{{post.post_description}}</td>
+    <td>{{post.post_content}}</td>
+    <td>{{post.post_datetime}}</td>
+    <td>{{post.post_posted_by}}</td>
+  </tr>
+</table>

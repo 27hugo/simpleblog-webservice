@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~font-awesome/css/font-awesome.css";
+
+body{
+  min-height: 100%;
+
+}
+
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background-color:rgba(0,0,0,0.6);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 20px;
+  border-style: solid;
+  border-color: #999;
+  border-width: 2px;
+}
+
+::-webkit-scrollbar-button {
+  background-color:rgba(0,0,0,0.75);
+}
+
+::-webkit-scrollbar-corner {
+  background-color: black;
+}
+
