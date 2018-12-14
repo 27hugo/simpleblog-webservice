@@ -20,7 +20,7 @@
   </div>
 </form>
 
-
+<!--
 <table class="table">
   <thead>
     <tr>
@@ -45,3 +45,33 @@
     <td>{{post.post_posted_by}}</td>
   </tr>
 </table>
+-->
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <td *ngIf="session">post_delete</td>
+      <td>post_id</td>
+      <td>post_title</td>
+      <td>post_imageurl</td>
+      <td>post_description</td>
+      <td>post_content</td>
+      <td>post_datetime</td>
+      <td>post_posted_by</td>
+    </tr>
+  </thead>
+  <tr *ngFor="let post of posts | slice: pageSize | slice: 0:itemsPerPage">
+    <td *ngIf="session"><button class="btn btn-danger" (click)="deletePost(post.post_id)">deletePost()</button></td>
+    <td>{{post.post_id}}</td>
+    <td>{{post.post_title}}</td>
+    <td>{{post.post_imageurl}}</td>
+    <td>{{post.post_description}}</td>
+    <td>{{post.post_content}}</td>
+    <td>{{post.post_datetime}}</td>
+    <td>{{post.post_posted_by}}</td>
+  </tr>
+</table>
+
+<ngb-pagination [collectionSize]="postsLength" #numPages [pageSize]="itemsPerPage" [(page)]="currentPage" [maxSize]="5" [rotate]="true" (pageChange)="onPageChange(currentPage)"></ngb-pagination>
+{{currentPage}}

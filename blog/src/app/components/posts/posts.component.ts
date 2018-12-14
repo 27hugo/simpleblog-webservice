@@ -13,6 +13,10 @@ import { StorageService } from 'src/app/services/storage.service';
 export class PostsComponent implements OnInit {
   session: Session;
   posts: Post;
+  postsLength;
+  currentPage = 1;
+  itemsPerPage = 10;
+  pageSize: number;
   constructor(private postsService: PostsService, private storageService: StorageService) {
 
   }
@@ -22,12 +26,24 @@ export class PostsComponent implements OnInit {
     post.post_posted_by = this.session.user.user_id;
     this.postsService.createPost(post).subscribe(data => console.log(data) );
   }
+
   deletePost(post_id) {
     this.postsService.deletePost(post_id).subscribe(data => console.log(data));
   }
+
   ngOnInit() {
-    this.postsService.getPosts().subscribe(data => this.posts = data.body );
+    this.postsService.getPosts().subscribe(data => {
+      this.posts = data.body;
+      this.postsLength = data.body.length;
+    } );
     this.session = this.storageService.getCurrentSession();
   }
 
+  public onPageChange(pageNum: number) {
+    this.pageSize = this.itemsPerPage * (pageNum - 1);
+  }
+
+  public changePagesize(num: number) {
+    this.itemsPerPage = this.pageSize + num;
+  }
 }
